@@ -33,8 +33,13 @@ export default function RecipeDetailScreen(props) {
     >
       {/* recipe Image */}
       <View style={styles.imageContainer} testID="imageContainer">
+    <Image
+    source={{ uri: recipe.strMealThumb }}
+    style={styles.recipeImage}
+    resizeMode="cover"
+    />
+    </View>
      
-      </View>
 
       {/* Back Button and Favorite Button */}
       <View style={styles.topButtonsContainer}>
@@ -66,28 +71,70 @@ export default function RecipeDetailScreen(props) {
             testID="recipeDetailsContainer"
           >
             <Text style={styles.recipeTitle} testID="recipeTitle">
-         
-              
-              </Text>
-            <Text style={styles.recipeCategory} testID="recipeCategory">
-              </Text>
+           {recipe.strMeal}
+          </Text>
+
+          <Text style={styles.recipeCategory} testID="recipeCategory">
+          {recipe.strCategory}
+          </Text>
           </View>
           <View style={styles.miscContainer} testID="miscContainer">
-        
-      </View>
+           <View style={styles.miscItem}>
+          <Text style={styles.miscIcon}>🌍</Text>
+          <Text style={styles.miscText}>{recipe.strArea}</Text>
+            </View>
 
+        <View style={styles.miscItem}>
+        <Text style={styles.miscIcon}>🏷️</Text>
+         <Text style={styles.miscText}>{recipe.strCategory}</Text>
+       </View>
+        </View>
+        
       {/* Ingredients */}
       <View style={styles.sectionContainer}>
+  <Text style={styles.sectionTitle}>Ingredients</Text>
+
+  <View style={styles.ingredientsList}>
+    {[...Array(20)].map((_, index) => {
+      const ingredient = recipe[`strIngredient${index + 1}`];
+      const measure = recipe[`strMeasure${index + 1}`];
+
+      if (!ingredient || ingredient.trim() === "") return null;
+
+      return (
+        <View
+          key={index}
+          style={styles.ingredientItem}
+        >
+          <View style={styles.ingredientBullet} />
+
+          <Text style={styles.ingredientText}>
+            {measure} {ingredient}
+          </Text>
+        </View>
+        );
+      })}
+     </View>
+     </View>
      
       </View>
 
       {/* Instructions */}
-      <View style={styles.sectionContainer} testID="sectionContainer">
+      <View
+  style={styles.sectionContainer}
+  testID="sectionContainer"
+>
+  <Text style={styles.sectionTitle}>
+    Instructions
+  </Text>
+
+  <Text style={styles.instructionsText}>
+    {recipe.strInstructions}
+  </Text>
+  </View>
         
-        </View>
           {/* Description */}
          
-        </View>
     </ScrollView>
   );
 }

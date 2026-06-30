@@ -28,7 +28,9 @@ import {
     );
     console.log('favoriteRecipe from custom',favoriteRecipe);
     
-    const isFavourite = favoriteRecipe.includes(recipe.idCategory); // Adjust this according to your recipe structure
+    const isFavourite = favoriteRecipe.some(
+  (item) => item.title === recipe.title
+  ); // Adjust this according to your recipe structure
   
     if (!recipe) {
       return (
