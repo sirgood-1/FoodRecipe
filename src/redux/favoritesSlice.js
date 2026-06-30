@@ -13,13 +13,13 @@ const favoritesSlice = createSlice({
 
       // Check if recipe already exists in favorites
       const existingRecipe = state.favoriterecipes.find(
-        (item) => item.idMeal === recipe.idMeal
+        (item) => item.idFood === recipe.idFood
       );
 
       if (existingRecipe) {
         // Remove from favorites
         state.favoriterecipes = state.favoriterecipes.filter(
-          (item) => item.idMeal !== recipe.idMeal
+          (item) => item.idFood !== recipe.idFood
         );
       } else {
         // Add to favorites

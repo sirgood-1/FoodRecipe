@@ -16,7 +16,7 @@ export default function RecipeDetailScreen(props) {
     (state) => state.favorites.favoriterecipes
   );
   const isFavourite = favoriterecipes?.some(
-    (favrecipe) => favrecipe.idMeal === recipe.idMeal
+    (favrecipe) => favrecipe.idFood === recipe.idFood
   ); // Check by idrecipe
 
   const navigation = useNavigation();
